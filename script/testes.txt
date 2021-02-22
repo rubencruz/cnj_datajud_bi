@@ -1,0 +1,27 @@
+ssh root@157.230.184.48
+
+senha: 2020Hackathoncnj
+
+
+
+./home/data-integration/kitchen.sh -file "/home/CNJ/dados/ktr/job_cnj.kjb" | tee /home/CNJ/dados/ktr/logs/log1.log
+
+
+/home/CNJ/dados/base/tribunais_superiores/proces-ac/asdasd.json
+
+/home/CNJ/dados/base/dados/justica_eleitoral/processos-tre-to/asdasdasd.json
+
+
+sudo apt-get install npm
+sudo npm install -g json2csv
+
+
+json2csv -i processos-tre-ac_1.json --delimiter ";" -f "millisInsercao","valorCausa","numero","processoVinculado","procEl","competencia","codigoLocalidade","assunto","dscSistema","tamanhoProcesso","dataAjuizamento","totalAssuntos","
+classeProcessual","nivelSigilo","orgaroJulgadorNomeOrgao","orgaroJulgadorCodigoMunicipioIBGE","orgaroJulgadorCodigoOrgao","orgaroJulgadorInstancia","movimento","grau" | sed 's/""/"/g' > res.csv
+
+json2csv -i processos-tre-ac_1.json -f numero, movimento, grau  > res.csv
+
+for file in du -a  /home/CNJ/dados/base/dados/justica_militar/*/*; do 
+json2csv -i ${file} --delimiter ";" -f "millisInsercao","valorCausa","numero","processoVinculado","procEl","competencia","codigoLocalidade","assunto","dscSistema","tamanhoProcesso","dataAjuizamento","totalAssuntos","
+classeProcessual","nivelSigilo","orgaroJulgadorNomeOrgao","orgaroJulgadorCodigoMunicipioIBGE","orgaroJulgadorCodigoOrgao","orgaroJulgadorInstancia","movimento","grau" | sed 's/""/"/g' > ${file}.csv ; done;
+
